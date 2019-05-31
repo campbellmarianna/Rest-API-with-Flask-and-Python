@@ -85,7 +85,7 @@ class Item(Resource):
 class ItemList(Resource):
     def get(self):
         # Were getting all the items and looping through them - using list comprehension
-        return { 'items': [item.json() for item in ItemModel.query.all] }
+        return { 'items': [item.json() for item in ItemModel.query.all()] }
         # Another implementation mapping a function to an element - using map
         # (helpful when working with others programming in a diffrent language,
         # also more stackable )
