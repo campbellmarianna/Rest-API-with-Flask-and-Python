@@ -1,3 +1,4 @@
+import os # get access operating systems variables
 from flask import Flask
 from flask_restful import Api
 from flask_jwt import JWT
@@ -8,7 +9,7 @@ from resources.item import Item, ItemList
 from resources.store import Store, StoreList
 
 app = Flask(__name__) # Flask is going to be our app and this app is going to have routes
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db' # were saying data.db is going to run at the root of our folder
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db') # for the second value were saying data.db is going to run at the root of our folder
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # the reason why we say this
 # essentially in order to know when an object had changed but not being saved to the
 # database the extension flask_sqlalchemy was tracking every change that we made
