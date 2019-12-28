@@ -37,7 +37,7 @@ class Item(Resource):
 
         data = Item.parser.parse_args() # parse through the data
 
-        item = ItemModel(name, **data)
+        item = ItemModel(name, **data) # everything is unpacked to go into the dictionary
 
         try: # were going to try to insert the item in
             item.save_to_db() # there is a chase there may be  problem where the item
@@ -85,7 +85,7 @@ class Item(Resource):
 class ItemList(Resource):
     def get(self):
         # Were getting all the items and looping through them - using list comprehension
-        return { 'items': [item.json() for item in ItemModel.query.all()] }
+        return { 'items': [item.json() for item in ItemModel.find_all()] }
         # Another implementation mapping a function to an element - using map
         # (helpful when working with others programming in a diffrent language,
         # also more stackable )

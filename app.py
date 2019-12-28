@@ -11,6 +11,7 @@ from resources.store import Store, StoreList
 app = Flask(__name__) # Flask is going to be our app and this app is going to have routes
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db') # for the second value were saying data.db is going to run at the root of our folder
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # the reason why we say this
+app.config['PROPAGATE_EXCEPTIONS'] = True # Can that your exceptions return their own errors
 # essentially in order to know when an object had changed but not being saved to the
 # database the extension flask_sqlalchemy was tracking every change that we made
 # to the SQLAlchemy session and that took some resources, now were turning it off
